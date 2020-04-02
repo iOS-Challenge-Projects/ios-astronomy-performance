@@ -142,11 +142,15 @@ class PhotosCollectionViewController: UIViewController, UICollectionViewDataSour
         
         // Start an operation to fetch image data
         let fetchOp = FetchPhotoOperation(photoReference: photoReference)
+        
+//        let filterOP = 
+        
         let cacheOp = BlockOperation {
             if let data = fetchOp.imageData {
                 self.cache.cache(value: data, for: photoReference.id)
             }
         }
+        
         let completionOp = BlockOperation {
             defer { self.operations.removeValue(forKey: photoReference.id) }
             
